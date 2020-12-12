@@ -7,11 +7,8 @@ const Login = (porps) => {
     return(
         <div className="flex justify-center mt-10">
             <div className="w-full max-w-3xl">      
-                <img id="Logo" src={"https://todoaki.com/wp-content/uploads/1520627_1571992646348451_6162017968943298432_n46.jpg"} alt=" imagen logo" />
+                <img id="Logo" src={"https://firebasestorage.googleapis.com/v0/b/restaurant-fc4d0.appspot.com/o/la-campi%C3%B1alogo-logo-rojo.png?alt=media&token=c53a1fa6-df33-474e-8f02-13e10b5756a5"} alt=" imagen logo" />
                 <div>           
-                <h1 id="Titulo" className="block text-orange-700 text-m font-bold mb-2"> 
-                    Campiña Lojana 
-                    </h1>
                 </div>
                 <section className="login text-3xl font-light mb-4" >
                     <div className='LoginContainer shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>

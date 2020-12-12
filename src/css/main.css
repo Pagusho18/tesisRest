@@ -10,9 +10,20 @@
  */
 #Logo{
   border-radius: 8px;
-  width: 300px;
+  width: 450px;
   margin-left: auto;
   margin-right: auto;
+}
+#Titulo{
+  font-size: 30px;
+  position: relative;
+  color: #EF7116;
+  font-family: "Quark Cheese";
+}
+
+#btnLogin{
+  position: relative;
+  left: 45%;
 }
 
 html {
