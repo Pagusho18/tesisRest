@@ -7,7 +7,7 @@ const Login = (porps) => {
     return(
         <div className="flex justify-center mt-10">
             <div className="w-full max-w-3xl">      
-                <img id="Logo" src={"https://firebasestorage.googleapis.com/v0/b/restaurant-fc4d0.appspot.com/o/la-campi%C3%B1alogo-logo-rojo.png?alt=media&token=c53a1fa6-df33-474e-8f02-13e10b5756a5"} alt=" imagen logo" />
+                <img id="Logo" src={"https://firebasestorage.googleapis.com/v0/b/restaurant-fc4d0.appspot.com/o/la-campi%C3%B1alogo-1.png?alt=media&token=2b54a5df-01e6-4280-9d30-a42dfad39c6c"} alt=" imagen logo" />
                 <div>           
                 </div>
                 <section className="login text-3xl font-light mb-4" >
