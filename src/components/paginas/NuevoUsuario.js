@@ -140,7 +140,7 @@ const NuevoUsuario = () => {
 
                         <input
                             type="submit"
-                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                            className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"
                             value="Agregar Usuario"
                         />
                     </form>

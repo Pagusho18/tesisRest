@@ -44,7 +44,7 @@ const Login = (porps) => {
                             <>
                                 <p className="font-bold"></p>
                                 <button id="btnLogin" onClick={handleLogin} 
-                                className="block text-orange-700 text-m font-bold mb-1" >Entrar</button>
+                                className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold" >Entrar</button>
                             </>
                         )}
                         </div>

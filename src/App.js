@@ -97,6 +97,7 @@ const App = () => {
     authListener();
   },[]);
   return(
+    
     <div className="App">
       {user ? (
         <FirebaseContext.Provider
@@ -118,8 +119,8 @@ const App = () => {
                   <Route path="/nuevo-producto" element={<NuevoProducto />  } />
                   <Route path="/productos" element={<Productos />  } />         
               </Routes>
-              <Hero handleLogout={handleLogout}/>
             </div>
+            <Hero handleLogout={handleLogout}/>
         </div>
       </FirebaseContext.Provider>
       ):<Login

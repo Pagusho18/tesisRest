@@ -36,7 +36,7 @@ const Roles = () => {
     return ( 
         <>
             <h1 className="text-3xl font-light mb-4">Roles</h1>
-            <Link to="/nuevo-rol" className="  bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold">
+            <Link to="/nuevo-rol" className="bg-orange-800 hover:bg-red-900, inline-block mb-5 p-2 text-white uppercase font-bold">
                 Agregar rol
             </Link>
 
