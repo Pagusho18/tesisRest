@@ -3,12 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
     return ( 
-        <div className="md:w-2/6 xl:w-1/5 bg-gray-800">
+        <div className="md:w-2/6 xl:w-1/5 bg-orange-800">
             <div className="p-6">
-                <p className="uppercase text-white text-2xl tracking-wide text-center font-bold">RestaurantApp</p>
-
-                <p className="mt-3 text-gray-600">Administra tu restaurant en las siguientes opciones:</p>
-
+                <img id="Logo" src={"https://firebasestorage.googleapis.com/v0/b/restaurant-fc4d0.appspot.com/o/la-campi%C3%B1alogo-b.png?alt=media&token=887d2785-8fe2-4617-af2b-01e4a25f5e33"} alt=" imagen logo" />
                 <nav className="mt-10">
                     <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900" activeClassName="text-yellow-500" exact="true" to="/">Ordenes</NavLink>
                     <NavLink className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900" activeClassName="text-yellow-500" exact="true" to="/menu">Menú</NavLink>
