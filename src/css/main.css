@@ -8,6 +8,12 @@
  the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+#Logo{
+  border-radius: 8px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 html {
   line-height: 1.15; /* 1 */
