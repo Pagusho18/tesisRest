@@ -6,16 +6,19 @@ import Login from './Login';
 import Ordenes from './components/paginas/Ordenes';
 import Menu from './components/paginas/Menu';
 import NuevoPlatillo from './components/paginas/NuevoPlatillo';
-import NuevoRol from './components/paginas/NuevoRol';
-import Roles from './components/paginas/Roles';
 import Hero from './components/paginas/Hero';
 import NuevoUsuario from './components/paginas/NuevoUsuario';
 import NuevoProducto from './components/paginas/NuevoProducto';
 import Productos from './components/paginas/Productos';
 import Usuarios from './components/paginas/Usuarios';
+import Alertas from './components/paginas/Alertas';
+import NuevaAlerta from './components/paginas/NuevaAlerta';
 import Sidebar from './components/ui/Sidebar';
 
+
 const App = () => {
+
+  const [ usuarios, guadarUsuarios ] = useState([]);
   const [user,setUser] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -32,6 +35,23 @@ const App = () => {
     setPasswordError('');
   };
 
+  useEffect(() => {
+    const obtenerUsuarios =  () => {
+       firebase.db.collection('usuarios').onSnapshot(manejarSnapshot);
+    }
+    obtenerUsuarios();
+  }, []);
+  
+  function manejarSnapshot(snapshot) {
+    const usuarios = snapshot.docs.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    });
+    // almacenar los resultados en el state
+    guadarUsuarios(usuarios);
+  }
 
   const handleLogin = () => {
     clearErrors();
@@ -112,12 +132,13 @@ const App = () => {
                   <Route path="/" element={<Ordenes />  } />
                   <Route path="/menu" element={<Menu />  } />
                   <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
-                  <Route path="/roles" element={<Roles />  } />
-                  <Route path="/nuevo-rol" element={<NuevoRol />  } />
                   <Route path="/usuarios" element={<Usuarios />  } />
                   <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
                   <Route path="/nuevo-producto" element={<NuevoProducto />  } />
-                  <Route path="/productos" element={<Productos />  } />         
+                  <Route path="/productos" element={<Productos />  } />
+                  <Route path="/alertas" element={<Alertas />  } />       
+                  <Route path="/nueva-alerta" element={<NuevaAlerta />  } />              
+
               </Routes>
             </div>
             <Hero handleLogout={handleLogout}/>

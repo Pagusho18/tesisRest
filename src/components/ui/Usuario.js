@@ -9,7 +9,7 @@ const Usuarios = ({usuario}) => {
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
 
-    const { id,  nombre, cedula , correo, telefono, existencia } = usuario;
+    const { id,  nombre, cedula , correo, telefono, rol, existencia } = usuario;
 
 
     // modificar el estado del usuario en firebase
@@ -27,26 +27,24 @@ const Usuarios = ({usuario}) => {
         }
     }
 
+    /*updateBookList: (id, data) => {
+        let ref = firebaseDb.ref('NewBooks');
+        return ref
+          .child(id)
+          .update(data)
+          .then(() => ref.once('value'))
+          .then(snapshot => snapshot.val())
+          .catch(error => ({
+            errorCode: error.code,
+            errorMessage: error.message
+          }));
+      }*/
+
+
     return ( 
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
-                    <div className="lg:w-5/12 xl:w-3/12">
-                        <div className="sm:flex sm:-mx-2 pl-2">
-                            <label className="block mt-5 sm:w-2/4">
-                                <span className="block text-gray-800 mb-2 " >Existencia</span>
-                                <select 
-                                    className="bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
-                                    value={existencia}
-                                    ref={existenciaRef}
-                                    onChange={ () => actualizarDisponibilidad() }
-                                >
-                                    <option value="true">Disponible</option>
-                                    <option value="false">No Disponible</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
                     <div className="lg:w-7/12 xl:w-9/12 pl-5">
                         <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre} </p>
                         <p className="text-gray-600 mb-4">Cedula: {''}
@@ -55,8 +53,24 @@ const Usuarios = ({usuario}) => {
                         <p className="text-gray-600 mb-4">telefono: {''}
                             <span className="text-gray-700 font-bold"> {telefono}</span> 
                         </p>
-                        <p className="font-bold text-2xl text-yellow-600 mb-4">{correo} </p>
+                        <p className="text-gray-600 mb-4">Correo: {''}
+                            <span className="text-gray-700 font-bold"> {correo}</span> 
+                        </p>
+                        <p className="text-gray-600 mb-4">Rol: {''}
+                            <span className="text-gray-700 font-bold"> {rol}</span> 
+                        </p>
+                        <input
+                            type="submit"
+                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
+                            value="Editar Usuario"
+                        />
+                        <input
+                        type="submit"
+                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
+                        value="Eliminar Usuario"
+                        />
                     </div>
+                    
                 </div>
             </div>
         </div>

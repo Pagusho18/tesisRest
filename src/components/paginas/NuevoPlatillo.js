@@ -35,9 +35,6 @@ const NuevoPlatillo = () => {
             nombre: Yup.string()
                         .min(3, 'Los Platillos deben tener al menos 3 caracteres')
                         .required('El Nombre del platillo es obligatorio'),
-            precio: Yup.number()
-                        .min(1, 'Debes agregar un número')
-                        .required('El Precio es obligatorio'),
             categoria: Yup.string()
                         .required('La categoría es obligatoria'),
             descripcion: Yup.string()
@@ -124,7 +121,7 @@ const NuevoPlatillo = () => {
                             <input 
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="precio"
-                                type="number"
+                                type="float"
                                 placeholder="$20"
                                 min="0"
                                 value={formik.values.precio}
@@ -141,10 +138,10 @@ const NuevoPlatillo = () => {
                         ) : null }
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Categoría</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="categoria">Categoría</label>
                             <select
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="precio"
+                                id="categoria"
                                 name="categoria"
                                 value={formik.values.categoria}
                                 onChange={formik.handleChange}

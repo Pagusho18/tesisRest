@@ -36,9 +36,16 @@ const Productos = () => {
     return ( 
         <>
             <h1 className="text-3xl font-light mb-4">Producto</h1>
+
             <Link to="/nuevo-producto" className="bg-orange-800 hover:bg-red-900, inline-block mb-5 p-2 text-white uppercase font-bold">
                 Agregar Producto
             </Link>
+
+            <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                placeholder="Ingrese el producto que desea encontrar"
+            >
+            </input>
 
             {productos.map( producto => (
                 <Producto

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
-import FileUploader from 'react-firebase-file-uploader';
+
 
 const NuevoUsuario = () => {
 
@@ -135,6 +135,26 @@ const NuevoUsuario = () => {
                             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
                                 <p className="font-bold">Hubo un error:</p>
                                 <p>{formik.errors.correo} </p>
+                            </div>
+                        ) : null }
+
+
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="rol">Rol</label>
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="rol"
+                                type="text"
+                                placeholder="Rol Usuario"
+                                value={formik.values.rol}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </div>
+                        { formik.touched.rol && formik.errors.rol ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.rol} </p>
                             </div>
                         ) : null }
 
