@@ -4,7 +4,8 @@ import fire  from './firebase/config';
 import { Routes, Route } from 'react-router';
 import Login from './Login';
 import Ordenes from './components/paginas/Ordenes';
-import Menu from './components/paginas/Menu';
+import OrdenesHistorico from './components/paginas/OrdenesHistorico';
+import Platos from './components/paginas/Platos';
 import NuevoPlatillo from './components/paginas/NuevoPlatillo';
 import Hero from './components/paginas/Hero';
 import NuevoUsuario from './components/paginas/NuevoUsuario';
@@ -130,14 +131,15 @@ const App = () => {
             <div className="md:w-2/5 xl:w-4/5 p-6">
               <Routes>
                   <Route path="/" element={<Ordenes />  } />
-                  <Route path="/menu" element={<Menu />  } />
+                  <Route path="/Platos" element={<Platos />  } />
                   <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
                   <Route path="/usuarios" element={<Usuarios />  } />
                   <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
                   <Route path="/nuevo-producto" element={<NuevoProducto />  } />
                   <Route path="/productos" element={<Productos />  } />
                   <Route path="/alertas" element={<Alertas />  } />       
-                  <Route path="/nueva-alerta" element={<NuevaAlerta />  } />              
+                  <Route path="/nueva-alerta" element={<NuevaAlerta />  } />     
+                  <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />            
 
               </Routes>
             </div>

@@ -35,14 +35,19 @@ const Orden = ({ orden }) => {
     }
 
     return ( 
-        <div className="sm:w-1/2 lg:w-1/3 px-2 mb-4">
-            <div className="p-3 shadow-md bg-white">
-                <h1 className="text-yellow-600 text-lg font-bold"> {orden.id} </h1>
+        <div className="w-full px-3 mb-4">
+            <div className="p-5 shadow-md bg-white">
+                <div className="lg:flex">
+                <h1 className="text-yellow-600 text-lg font-bold">Mesa: {orden.mesa} </h1>
+                <p className="text-gray-700 font-bold">Cliente: {orden.usuario}</p>
+
                 {orden.orden.map( platillos => (
                     <p className="text-gray-600"> {platillos.cantidad} {platillos.nombre} </p>
                 ) )}
 
                 <p className="text-gray-700 font-bold">Total a Pagar: $ {orden.total}</p>
+
+                
 
                 {orden.tiempoentrega === 0 && (
                     <div className="mb-4">
@@ -86,7 +91,8 @@ const Orden = ({ orden }) => {
                    </button>
                 ) }
             </div>
-        </div>
+            </div>
+            </div>
      );
 }
  

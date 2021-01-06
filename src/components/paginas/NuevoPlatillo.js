@@ -153,7 +153,6 @@ const NuevoPlatillo = () => {
                                 <option value="platoFuerte">Plato Fuerte</option>
                                 <option value="bebida">Bebidas</option>
                                 <option value="postre">Postre</option>
-                                <option value="combos">Combos</option>
 
                             </select>
                         </div>

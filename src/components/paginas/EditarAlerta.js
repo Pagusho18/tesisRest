@@ -1,34 +1,10 @@
-import React, { useContext,useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const NuevaAlerta = () => {
-
-    const [ productos, guadarProducto ] = useState([]);
-
-    // consultar la base de datos al cargar
-    useEffect(() => {
-        const obtenerProducto =  () => {
-           firebase.db.collection('productos').onSnapshot(manejarSnapshot);
-        }
-        obtenerProducto();
-    }, []);
-
-    // Snapshot nos permite utilizar la base de datos en tiempo real de firestore
-    function manejarSnapshot(snapshot) {
-        const productos = snapshot.docs.map(doc => {
-            return {
-                id: doc.id,
-                ...doc.data()
-            }
-        });
-
-        // almacenar los resultados en el state
-        guadarProducto(productos);
-    }
-    console.log(productos);
 
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);   
@@ -39,8 +15,6 @@ const NuevaAlerta = () => {
         initialValues: {
             nombre: '',
             descripcion: '',
-            disponibilidad:'true',
-
         }, 
         validationSchema: Yup.object({
             nombre: Yup.string()
@@ -132,8 +106,6 @@ const NuevaAlerta = () => {
                                 <p>{formik.errors.descripcion} </p>
                             </div>
                         ) : null }
-
-
                         <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"

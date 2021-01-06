@@ -27,19 +27,6 @@ const Usuarios = ({usuario}) => {
         }
     }
 
-    /*updateBookList: (id, data) => {
-        let ref = firebaseDb.ref('NewBooks');
-        return ref
-          .child(id)
-          .update(data)
-          .then(() => ref.once('value'))
-          .then(snapshot => snapshot.val())
-          .catch(error => ({
-            errorCode: error.code,
-            errorMessage: error.message
-          }));
-      }*/
-
 
     return ( 
         <div className="w-full px-3 mb-4">

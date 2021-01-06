@@ -14,7 +14,7 @@ const Alertas = () => {
     // consultar la base de datos al cargar
     useEffect(() => {
         const obtenerAlertas =  () => {
-           firebase.db.collection('alertas').onSnapshot(manejarSnapshot);
+           firebase.db.collection('alertas').where('disponibilidad', "==", true).onSnapshot(manejarSnapshot);
         }
         obtenerAlertas();
     }, []);

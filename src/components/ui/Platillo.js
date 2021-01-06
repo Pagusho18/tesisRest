@@ -47,11 +47,6 @@ const Platillo = ({platillo}) => {
                             className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
                             value="Editar Plato"
                         />
-                        <input
-                        type="submit"
-                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
-                        value="Eliminar Plato"
-                        />
                     </div>
                 </div>
             </div>
