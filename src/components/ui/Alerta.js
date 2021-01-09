@@ -6,6 +6,8 @@ const Alerta = ({alerta}) => {
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
     const { id,  nombre, producto,descripcion,cantidad, disponibilidad } = alerta;
+
+
     // modificar el estado del alertas en firebase
     const actualizarDisponibilidad = () => {
         const disponibilidad = (existenciaRef.current.value === "true");
@@ -19,6 +21,7 @@ const Alerta = ({alerta}) => {
             console.log(error);
         }
     }
+    
     return ( 
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
@@ -27,6 +30,9 @@ const Alerta = ({alerta}) => {
                         <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre} </p>
                         <p className="text-gray-600 mb-4">Cantidad: {''}
                             <span className="text-gray-700 font-bold"> {cantidad}</span> 
+                        </p>
+                        <p className="text-gray-600 mb-4">Producto: {''}
+                            <span className="text-gray-700 font-bold"> {producto}</span> 
                         </p>
                         <p className="text-gray-600 mb-4">Contenido Alerta: {''}
                             <span className="text-gray-700 font-bold"> {descripcion}</span> 

@@ -13,6 +13,20 @@ const Usuarios = ({usuario}) => {
 
 
     // modificar el estado del usuario en firebase
+    /*updateBookList: (id, data) => {
+            let ref = firebaseDb.ref('NewBooks');
+            return ref
+            .child(id)
+            .update(data)
+            .then(() => ref.once('value'))
+            .then(snapshot => snapshot.val())
+            .catch(error => ({
+                errorCode: error.code,
+                errorMessage: error.message
+            }));
+        }*/
+
+
     const actualizarDisponibilidad = () => {
         const existencia = (existenciaRef.current.value === "true");
 

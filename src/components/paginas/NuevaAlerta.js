@@ -4,7 +4,10 @@ import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
+
 const NuevaAlerta = () => {
+
+    
 
     const [ productos, guadarProducto ] = useState([]);
 
@@ -28,7 +31,6 @@ const NuevaAlerta = () => {
         // almacenar los resultados en el state
         guadarProducto(productos);
     }
-    console.log(productos);
 
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);   
@@ -39,7 +41,8 @@ const NuevaAlerta = () => {
         initialValues: {
             nombre: '',
             descripcion: '',
-            disponibilidad:'true',
+            producto:'',
+            disponibilidad: true,
 
         }, 
         validationSchema: Yup.object({
@@ -49,6 +52,8 @@ const NuevaAlerta = () => {
             descripcion: Yup.string()
                         .min(10, 'La descripción debe ser más larga')
                         .required('La descripción es obligatoria'),
+            producto: Yup.string()
+                        .required('El producto es obligatorio'),
             cantidad: Yup.number()
                         .min(1, 'Debes agregar una cantidad')
                         .required('La cantidad es obligatorio'),
@@ -65,6 +70,8 @@ const NuevaAlerta = () => {
             }
         }
     });
+
+
 
     return ( 
         <>
@@ -133,6 +140,27 @@ const NuevaAlerta = () => {
                             </div>
                         ) : null }
 
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="producto">Producto </label>
+
+                        <select className="bg-white shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline "
+                        id="producto"
+                        name="producto"
+                        value={formik.values.producto}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        >
+                            {productos.map((producto) => (
+                            <option> {producto.nombre} </option>
+                            ))}
+
+                        </select>
+
+                        { formik.touched.producto && formik.errors.producto ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.producto} </p>
+                            </div>
+                        ) : null }
 
                         <input
                             type="submit"

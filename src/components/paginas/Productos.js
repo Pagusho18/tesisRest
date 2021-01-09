@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FirebaseContext } from '../../firebase';
-
 import Producto from '../ui/Producto';
 
 const Productos = () => {
@@ -13,11 +12,12 @@ const Productos = () => {
 
     // consultar la base de datos al cargar
     useEffect(() => {
-        const obtenerProducto =  () => {
+        const obtenerProductoActivo =  () => {
            firebase.db.collection('productos').onSnapshot(manejarSnapshot);
         }
-        obtenerProducto();
+        obtenerProductoActivo();
     }, []);
+
 
     // Snapshot nos permite utilizar la base de datos en tiempo real de firestore
     function manejarSnapshot(snapshot) {
@@ -46,14 +46,13 @@ const Productos = () => {
                 placeholder="Ingrese el producto que desea encontrar"
             >
             </input>
-
+            <h1 className="text-3xl font-light mb-2">Productos Disponibles</h1>
             {productos.map( producto => (
                 <Producto
                     key={producto.id}
                     producto={producto}
                 />
             ))}
-
         </>
      );
 }

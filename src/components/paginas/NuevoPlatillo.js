@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState,useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
@@ -11,6 +11,29 @@ const NuevoPlatillo = () => {
     const [subiendo, guardarSubiendo] = useState(false);
     const [progreso, guardarProgreso ] = useState(0);
     const [ urlimagen, guardarUrlimagen] = useState('');
+    const [ productos, guadarProducto ] = useState([]);
+
+    // consultar la base de datos al cargar
+    useEffect(() => {
+        const obtenerProducto =  () => {
+           firebase.db.collection('productos').onSnapshot(manejarSnapshot);
+        }
+        obtenerProducto();
+    }, []);
+
+    // Snapshot nos permite utilizar la base de datos en tiempo real de firestore
+    function manejarSnapshot(snapshot) {
+        const productos = snapshot.docs.map(doc => {
+            return {
+                id: doc.id,
+                ...doc.data()
+            }
+        });
+
+        // almacenar los resultados en el state
+        guadarProducto(productos);
+    }
+    console.log(productos);
 
 
     // Context con las operaciones de firebase
@@ -213,6 +236,17 @@ const NuevoPlatillo = () => {
                             </div>
                         ) : null }
 
+                        <input className="bg-white shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline "
+                        id="producto"
+                        name="producto"
+                        type="checkbox"
+                        >
+                            {productos.map((producto) => (
+                             producto.nombre 
+                            ))}
+
+                        </input>
+                        
                         <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"
