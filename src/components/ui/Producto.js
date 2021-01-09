@@ -11,7 +11,7 @@ const Producto = ({producto}) => {
 
     // modificar el estado del producto en firebase
     const actualizarDisponibilidad = () => {
-        const disponibilidad = (existenciaRef.current.value === "true");
+        const disponibilidad = false
         try {
             firebase.db.collection('productos')
                 .doc(id)

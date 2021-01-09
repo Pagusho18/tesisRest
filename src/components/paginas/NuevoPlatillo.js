@@ -5,6 +5,9 @@ import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import FileUploader from 'react-firebase-file-uploader';
 
+
+
+
 const NuevoPlatillo = () => {
 
     // state para las imagenes
@@ -236,18 +239,7 @@ const NuevoPlatillo = () => {
                             </div>
                         ) : null }
 
-                        <input className="bg-white shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline "
-                        id="producto"
-                        name="producto"
-                        type="checkbox"
-                        >
-                            {productos.map((producto) => (
-                             producto.nombre 
-                            ))}
-
-                        </input>
-                        
-                        <input
+                          <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"
                             value="Agregar Platillo"

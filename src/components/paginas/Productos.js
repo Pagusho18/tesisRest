@@ -13,7 +13,7 @@ const Productos = () => {
     // consultar la base de datos al cargar
     useEffect(() => {
         const obtenerProductoActivo =  () => {
-           firebase.db.collection('productos').onSnapshot(manejarSnapshot);
+           firebase.db.collection('productos').where('disponibilidad', "==", true).onSnapshot(manejarSnapshot);
         }
         obtenerProductoActivo();
     }, []);

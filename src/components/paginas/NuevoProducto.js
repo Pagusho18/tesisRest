@@ -15,6 +15,7 @@ const NuevoProducto = () => {
         initialValues: {
             nombre: '',
             descripcion: '',
+            disponibilidad:true,
         }, 
         validationSchema: Yup.object({
             nombre: Yup.string()

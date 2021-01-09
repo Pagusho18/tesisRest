@@ -38,43 +38,40 @@ const Orden = ({ orden }) => {
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
+                    <div className="lg:w-7/12 xl:w-9/12 pl-5">
                 <h1 className="text-yellow-600 text-lg font-bold">Mesa: {orden.mesa} </h1>
-                <p className="text-gray-700 font-bold">Cliente: {orden.usuario}</p>
-
+                
+            
                 {orden.orden.map( platillos => (
                     <p className="text-gray-600"> {platillos.cantidad} {platillos.nombre} </p>
                 ) )}
 
                 <p className="text-gray-700 font-bold">Total a Pagar: $ {orden.total}</p>
-
-                
-
                 {orden.tiempoentrega === 0 && (
                     <div className="mb-4">
                         <label className="block text-gray-700 text-sm font-bold mb-2">
                             Tiempo de Entrega
                         </label>
-
                         <input
                             type="number"
-                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  "
+                            className="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  "
                             min="1"
                             max="20"
                             placeholder="20"
                             value={tiempoentrega}
                             onChange={ e => guardarTiempoEntrega( parseInt(e.target.value) ) }
                         />
-
-                        <button
+                        <div className="mb-4">
+                         <button
                             onClick={ () => definirTiempo(orden.id) }
                             type="submit"
-                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                            className="bg-gray-800 hover:bg-gray-900  mt-5 p-2 text-white uppercase font-bold"
                         >
                             Definir Tiempo
                         </button>
+                        </div>
                     </div>
                 )}
-
                 {orden.tiempoentrega > 0 && (
                     <p className="text-gray-700">Tiempo de Entrega:
                         <span className="font-bold"> {orden.tiempoentrega} Minutos</span>
@@ -84,12 +81,13 @@ const Orden = ({ orden }) => {
                 { !orden.completado && orden.tiempoentrega > 0 && (
                    <button
                     type="button"
-                    className="bg-blue-800 hover:bg-blue-700 w-full mt-5 p-2 text-white uppercase font-bold"
+                    className="bg-blue-800 hover:bg-blue-700  mt-5 p-2 text-white uppercase font-bold"
                     onClick={ () => completarOrden( orden.id )}
                    >
                        Marcar como lista
                    </button>
                 ) }
+            </div>
             </div>
             </div>
             </div>
