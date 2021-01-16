@@ -4,17 +4,17 @@ import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import FileUploader from 'react-firebase-file-uploader';
+import { Checkbox, CheckboxGroup,CheckPicker  } from 'rsuite';
 
 
-
-
-const NuevoPlatillo = () => {
+ const NuevoPlatillo  = () => {
 
     // state para las imagenes
     const [subiendo, guardarSubiendo] = useState(false);
     const [progreso, guardarProgreso ] = useState(0);
     const [ urlimagen, guardarUrlimagen] = useState('');
     const [ productos, guadarProducto ] = useState([]);
+    const [ arrproductos, guadarArrProducto ] = useState([]);
 
     // consultar la base de datos al cargar
     useEffect(() => {
@@ -36,13 +36,9 @@ const NuevoPlatillo = () => {
         // almacenar los resultados en el state
         guadarProducto(productos);
     }
-    console.log(productos);
-
 
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);
-
-    // console.log(firebase);
     
     // Hook para redireccionar
     const navigate = useNavigate();
@@ -66,21 +62,21 @@ const NuevoPlatillo = () => {
             descripcion: Yup.string()
                         .min(10, 'La descripción debe ser más larga')
                         .required('La descripción es obligatoria'),
-                        
         }),
         onSubmit: platillo => {
             try {
                 platillo.existencia = true;
                 platillo.imagen = urlimagen;
-
+                platillo.productos = arrproductos;
                 firebase.db.collection('platos').add(platillo);
 
                 // Redireccionar
-                navigate('/menu');
+                navigate('/platos');
             } catch (error) {
                 console.log(error);
             }
         }
+        
     });
 
     // Todo sobre las imagenes
@@ -109,14 +105,13 @@ const NuevoPlatillo = () => {
     const handleProgress = progreso => {
         guardarProgreso(progreso);
 
-        console.log(progreso);
+        
     }
-
 
     return ( 
         <>
             <h1 className="text-3xl font-light mb-4">Agregar Platillo</h1>
-
+            
             <div className="flex justify-center mt-10">
                 <div className="w-full max-w-3xl">
                     <form
@@ -141,6 +136,7 @@ const NuevoPlatillo = () => {
                             </div>
                         ) : null }
 
+                        
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="precio">Precio</label>
@@ -239,7 +235,21 @@ const NuevoPlatillo = () => {
                             </div>
                         ) : null }
 
-                          <input
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="productos">Productos</label>
+                            <CheckboxGroup 
+                            inline 
+                            name="checkboxList"
+                            onChange={value => {
+                                guadarArrProducto({ value });
+                            }}
+                            >
+                                {productos.map((producto) => (
+                                <Checkbox value={producto.nombre}> {producto.nombre}  </Checkbox> ))}
+                            </CheckboxGroup>
+                        </div>
+                        
+                        <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"
                             value="Agregar Platillo"
@@ -250,5 +260,5 @@ const NuevoPlatillo = () => {
         </>
      );
 }
- 
+
 export default NuevoPlatillo;

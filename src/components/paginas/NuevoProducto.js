@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect,useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
 const NuevoProducto = () => {
+
 
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);   
@@ -68,25 +69,6 @@ const NuevoProducto = () => {
                                 <p>{formik.errors.nombre} </p>
                             </div>
                         ) : null }
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción</label>
-                            <textarea 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
-                                id="descripcion"
-                                placeholder="Descripción del producto"
-                                value={formik.values.descripcion}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                            ></textarea>
-                        </div>
-
-                        { formik.touched.descripcion && formik.errors.descripcion ? (
-                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.descripcion} </p>
-                            </div>
-                        ) : null }
-
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidad">Cantidad</label>
@@ -94,7 +76,7 @@ const NuevoProducto = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="cantidad"
                                 type="number"
-                                placeholder="$20"
+                                placeholder="20"
                                 min="0"
                                 value={formik.values.cantidad}
                                 onChange={formik.handleChange}
@@ -108,6 +90,29 @@ const NuevoProducto = () => {
                                 <p>{formik.errors.cantidad} </p>
                             </div>
                         ) : null }
+
+
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidadMimina">Cantidad Minima del producto:</label>
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="cantidadMimina"
+                                type="number"
+                                placeholder="20"
+                                min="0"
+                                value={formik.values.cantidadMimina}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </div>
+
+                        { formik.touched.cantidadMimina && formik.errors.cantidadMimina ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.cantidadMimina} </p>
+                            </div>
+                        ) : null }
+
                         <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"

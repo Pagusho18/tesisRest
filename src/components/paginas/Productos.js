@@ -41,11 +41,7 @@ const Productos = () => {
                 Agregar Producto
             </Link>
 
-            <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Ingrese el producto que desea encontrar"
-            >
-            </input>
+
             <h1 className="text-3xl font-light mb-2">Productos Disponibles</h1>
             {productos.map( producto => (
                 <Producto

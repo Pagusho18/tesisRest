@@ -13,12 +13,12 @@ import NuevoProducto from './components/paginas/NuevoProducto';
 import Productos from './components/paginas/Productos';
 import Usuarios from './components/paginas/Usuarios';
 import Alertas from './components/paginas/Alertas';
-import NuevaAlerta from './components/paginas/NuevaAlerta';
+import Reservas from './components/paginas/Reservas';
+import Aforos from './components/paginas/Aforos';
 import Sidebar from './components/ui/Sidebar';
 
-
 const App = () => {
-
+  const [showModal, setShowModal] = React.useState(false);
   const [ usuarios, guadarUsuarios ] = useState([]);
   const [user,setUser] = useState('');
   const [email,setEmail] = useState('');
@@ -117,9 +117,11 @@ const App = () => {
   useEffect(() =>{
     authListener();
   },[]);
+
+
+
   return(
-    
-    <div className="App">
+    <div className="App static">
       {user ? (
         <FirebaseContext.Provider
         value={{
@@ -137,10 +139,11 @@ const App = () => {
                   <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
                   <Route path="/nuevo-producto" element={<NuevoProducto />  } />
                   <Route path="/productos" element={<Productos />  } />
-                  <Route path="/alertas" element={<Alertas />  } />       
-                  <Route path="/nueva-alerta" element={<NuevaAlerta />  } />     
-                  <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />            
-
+                  <Route path="/alertas" element={<Alertas />  } />   
+                  <Route path="/aforos" element={<Aforos />  } />  
+                  <Route path="/reservas" element={<Reservas />  } />     
+                  <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />   
+                           
               </Routes>
             </div>
             <Hero handleLogout={handleLogout}/>
