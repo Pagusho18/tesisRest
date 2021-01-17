@@ -1,4 +1,4 @@
-import React, { useContext,useEffect,useState } from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { FirebaseContext } from '../../firebase';
@@ -15,17 +15,17 @@ const NuevoProducto = () => {
     const formik = useFormik({
         initialValues: {
             nombre: '',
-            descripcion: '',
             disponibilidad:true,
+            disparador:false,
         }, 
         validationSchema: Yup.object({
             nombre: Yup.string()
                         .min(3, 'Los productos deben tener al menos 3 caracteres')
                         .required('El Nombre del producto es obligatorio'),
-            descripcion: Yup.string()
-                        .min(10, 'La descripción debe ser más larga')
-                        .required('La descripción es obligatoria'),
             cantidad: Yup.number()
+                        .min(1, 'Debes agregar una cantidad')
+                        .required('La cantidad es obligatorio'),
+            cantidadMinima: Yup.number()
                         .min(1, 'Debes agregar una cantidad')
                         .required('La cantidad es obligatorio'),
                         
@@ -33,6 +33,7 @@ const NuevoProducto = () => {
         onSubmit: producto => {
             console.log("Entra");
             try {
+                
                 firebase.db.collection('productos').add(producto);
                 // Redireccionar
                 navigate('/productos');
@@ -93,23 +94,23 @@ const NuevoProducto = () => {
 
 
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidadMimina">Cantidad Minima del producto:</label>
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidadMinima">Cantidad Minima del producto:</label>
                             <input 
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="cantidadMimina"
+                                id="cantidadMinima"
                                 type="number"
-                                placeholder="20"
+                                placeholder="10"
                                 min="0"
-                                value={formik.values.cantidadMimina}
+                                value={formik.values.cantidadMinima}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
                             />
                         </div>
 
-                        { formik.touched.cantidadMimina && formik.errors.cantidadMimina ? (
+                        { formik.touched.cantidadMinima && formik.errors.cantidadMinima ? (
                             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
                                 <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.cantidadMimina} </p>
+                                <p>{formik.errors.cantidadMinima} </p>
                             </div>
                         ) : null }
 
