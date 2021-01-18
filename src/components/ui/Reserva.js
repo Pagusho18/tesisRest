@@ -6,19 +6,19 @@ const Reserva = ({reserva}) => {
     const existenciaRef = useRef(reserva.activo);
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
-    const { id,  detail,pendingAprobe, activo,diahorapedidoreserva,diahorareserva,email, nombre,personas,phone } = reserva;
+    const { id,  detail,pendingAprobe, activo,diahorareserva,email, nombre,personas,phone } = reserva;
 
 
 
     // modificar el estado del alertas en firebase
     const actualizarDisponibilidad = () => {
-        const pendingAprobe = true
+        const activo = (existenciaRef.current.value === "true");
         try {
             firebase.db.collection('reservas')
                 .doc(id)
                 .update({
                     activo,
-                    pendingAprobe
+                    pendingAprobe:activo
                     
                 });
         } catch (error) {
@@ -32,7 +32,8 @@ const Reserva = ({reserva}) => {
             firebase.db.collection('reservas')
                 .doc(id)
                 .update({
-                    activo:false
+                    activo:false,
+                    pendingAprobe:false
                 });
         } catch (error) {
             console.log(error);
@@ -67,7 +68,7 @@ const Reserva = ({reserva}) => {
                                     <span className="text-gray-600 mb-4 " >Respuesta: </span>
                                     <select 
                                         className="bg-white shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
-                                        value={pendingAprobe}
+                                        value={activo}
                                         ref={existenciaRef}
                                         onChange={ () => actualizarDisponibilidad() }
                                     >

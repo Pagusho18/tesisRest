@@ -140,10 +140,8 @@ const App = () => {
                   <Route path="/nuevo-producto" element={<NuevoProducto />  } />
                   <Route path="/productos" element={<Productos />  } />
                   <Route path="/alertas" element={<Alertas />  } />   
-                  <Route path="/aforos" element={<Aforos />  } />  
-                  <Route path="/reservas" element={<Reservas />  } />     
+                  <Route path="/reservas" element={<Reservas />  } /> 
                   <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />   
-                           
               </Routes>
             </div>
             <Hero handleLogout={handleLogout}/>
