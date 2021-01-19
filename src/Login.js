@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+const Login = (props) => {
 
-const Login = (porps) => {
+    const navigate = useNavigate();
 
-    const {email,setEmail,password,setPassword,handleLogin,handleSignup,hasAccount,sethasAccount,emailError,passwordError } = porps;
+    const {email,setEmail,password,setPassword,handleLogin,handleSignup,hasAccount,sethasAccount,emailError,passwordError } = props;
+
     return(
         <div className="flex justify-center mt-10">
             <div className="w-full max-w-3xl">      
@@ -12,7 +15,7 @@ const Login = (porps) => {
                 </div>
                 <section className="login text-3xl font-light mb-4" >
                     <div className='LoginContainer shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
-                        <label className="block text-red-700 text-sm font-bold mb-2">Usuario</label>
+                        <label className="block text-red-700 text-sm font-bold mb-2">Correo Electrónico</label>
                         <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             type="text" 
@@ -45,6 +48,10 @@ const Login = (porps) => {
                                 <p className="font-bold"></p>
                                 <button id="btnLogin" onClick={handleLogin} 
                                 className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold" >Entrar</button>
+
+                                <p className="font-bold"></p>
+                                <button id="btnReset" onClick={() => navigate('/reset')} 
+                                className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold" >¿Olvidó su contraseña?</button>
                             </>
                         )}
                         </div>
@@ -55,5 +62,5 @@ const Login = (porps) => {
         </div>
     )
 };
-export default Login;
 
+export default Login;

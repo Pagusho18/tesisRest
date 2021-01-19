@@ -10,6 +10,7 @@ class Firebase {
         }
         this.db = app.firestore();
         this.storage = app.storage();
+        this.auth = app.auth();
     }
 }
 

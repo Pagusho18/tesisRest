@@ -15,17 +15,26 @@ import Usuarios from './components/paginas/Usuarios';
 import Alertas from './components/paginas/Alertas';
 import NuevaAlerta from './components/paginas/NuevaAlerta';
 import Sidebar from './components/ui/Sidebar';
+import Reset from './components/ui/Reset';
 
+import { useNavigate } from 'react-router-dom';
 
 const App = () => {
 
-  const [ usuarios, guadarUsuarios ] = useState([]);
+  const navigate = useNavigate();
+
+  const [usuarios, guadarUsuarios] = useState([]);
   const [user,setUser] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [emailError,setEmailError] = useState('');
   const [passwordError,setPasswordError] = useState('');
   const [hasAccount,sethasAccount] = useState('');
+
+  const test = () => {
+    navigate('/reset');
+  };
+
   const clearInputs = () => {
     setEmail('');
     setPassword('');
@@ -91,7 +100,6 @@ const App = () => {
         case "auth/weak-password":
           setPasswordError(err.message);
           break;
-
       }
     });
   };
@@ -117,47 +125,58 @@ const App = () => {
   useEffect(() =>{
     authListener();
   },[]);
-  return(
-    
+  return(  
     <div className="App">
-      {user ? (
+      {
+        user ? (
+          <FirebaseContext.Provider
+            value={{
+              firebase
+            }}
+          >
+          <div className="md:flex min-h-screen">
+              <Sidebar />
+              <div className="md:w-2/5 xl:w-4/5 p-6">
+                <Routes>
+                    <Route path="/Platos" element={<Platos />  } />
+                    <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
+                    <Route path="/usuarios" element={<Usuarios />  } />
+                    <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
+                    <Route path="/nuevo-producto" element={<NuevoProducto />  } />
+                    <Route path="/productos" element={<Productos />  } />
+                    <Route path="/alertas" element={<Alertas />  } />       
+                    <Route path="/nueva-alerta" element={<NuevaAlerta />  } />     
+                    <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />  
+                    <Route path="/" element={<Ordenes />  } />                          
+                </Routes>
+              </div>
+                <Hero handleLogout={handleLogout}/>
+              </div>
+          </FirebaseContext.Provider>
+        ) : ( 
+        window.location.href === "http://localhost:3000/reset" ? ( // Si quiere resetear
         <FirebaseContext.Provider
-        value={{
-          firebase
-        }}
-      >
-        <div className="md:flex min-h-screen">
-            <Sidebar />
-            <div className="md:w-2/5 xl:w-4/5 p-6">
-              <Routes>
-                  <Route path="/" element={<Ordenes />  } />
-                  <Route path="/Platos" element={<Platos />  } />
-                  <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
-                  <Route path="/usuarios" element={<Usuarios />  } />
-                  <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
-                  <Route path="/nuevo-producto" element={<NuevoProducto />  } />
-                  <Route path="/productos" element={<Productos />  } />
-                  <Route path="/alertas" element={<Alertas />  } />       
-                  <Route path="/nueva-alerta" element={<NuevaAlerta />  } />     
-                  <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />            
+          value={{
+            firebase
+          }}
+        >
+        <Route path="/reset" element={<Reset />  } />
 
-              </Routes>
-            </div>
-            <Hero handleLogout={handleLogout}/>
-        </div>
-      </FirebaseContext.Provider>
-      ):<Login
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleLogin={handleLogin}
-      handleSignup={handleSignup}
-      hasAccount={hasAccount}
-      sethasAccount={sethasAccount}
-      emailError={emailError}
-      passwordError={passwordError}
-    />} 
+        </FirebaseContext.Provider>
+      ) : (
+        <Login
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleLogin={handleLogin}
+        handleSignup={handleSignup}
+        hasAccount={hasAccount}
+        sethasAccount={sethasAccount}
+        emailError={emailError}
+        passwordError={passwordError}
+      />
+      ))} 
     </div>
   );  
 };
