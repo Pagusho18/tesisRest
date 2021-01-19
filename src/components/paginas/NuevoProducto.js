@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const NuevoProducto = () => {
 
+
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);   
     // Hook para redireccionar
@@ -14,17 +15,17 @@ const NuevoProducto = () => {
     const formik = useFormik({
         initialValues: {
             nombre: '',
-            descripcion: '',
             disponibilidad:true,
+            disparador:false,
         }, 
         validationSchema: Yup.object({
             nombre: Yup.string()
                         .min(3, 'Los productos deben tener al menos 3 caracteres')
                         .required('El Nombre del producto es obligatorio'),
-            descripcion: Yup.string()
-                        .min(10, 'La descripción debe ser más larga')
-                        .required('La descripción es obligatoria'),
             cantidad: Yup.number()
+                        .min(1, 'Debes agregar una cantidad')
+                        .required('La cantidad es obligatorio'),
+            cantidadMinima: Yup.number()
                         .min(1, 'Debes agregar una cantidad')
                         .required('La cantidad es obligatorio'),
                         
@@ -32,6 +33,7 @@ const NuevoProducto = () => {
         onSubmit: producto => {
             console.log("Entra");
             try {
+                
                 firebase.db.collection('productos').add(producto);
                 // Redireccionar
                 navigate('/productos');
@@ -68,25 +70,6 @@ const NuevoProducto = () => {
                                 <p>{formik.errors.nombre} </p>
                             </div>
                         ) : null }
-                        <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="descripcion">Descripción</label>
-                            <textarea 
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
-                                id="descripcion"
-                                placeholder="Descripción del producto"
-                                value={formik.values.descripcion}
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                            ></textarea>
-                        </div>
-
-                        { formik.touched.descripcion && formik.errors.descripcion ? (
-                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.descripcion} </p>
-                            </div>
-                        ) : null }
-
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidad">Cantidad</label>
@@ -94,7 +77,7 @@ const NuevoProducto = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="cantidad"
                                 type="number"
-                                placeholder="$20"
+                                placeholder="20"
                                 min="0"
                                 value={formik.values.cantidad}
                                 onChange={formik.handleChange}
@@ -108,6 +91,29 @@ const NuevoProducto = () => {
                                 <p>{formik.errors.cantidad} </p>
                             </div>
                         ) : null }
+
+
+                        <div className="mb-4">
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cantidadMinima">Cantidad Minima del producto:</label>
+                            <input 
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="cantidadMinima"
+                                type="number"
+                                placeholder="10"
+                                min="0"
+                                value={formik.values.cantidadMinima}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </div>
+
+                        { formik.touched.cantidadMinima && formik.errors.cantidadMinima ? (
+                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
+                                <p className="font-bold">Hubo un error:</p>
+                                <p>{formik.errors.cantidadMinima} </p>
+                            </div>
+                        ) : null }
+
                         <input
                             type="submit"
                             className="bg-orange-800 hover:bg-red-900 w-full mt-5 p-2 text-white uppercase font-bold"

@@ -42,11 +42,6 @@ const Platillo = ({platillo}) => {
                         <p className="text-gray-600 mb-4">Precio: {''}
                             <span className="text-gray-700 font-bold">$ {precio}</span> 
                         </p>
-                        <input
-                            type="submit"
-                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
-                            value="Editar Plato"
-                        />
                     </div>
                 </div>
             </div>

@@ -12,20 +12,6 @@ const Usuarios = ({usuario}) => {
     const { id,  nombre, cedula , correo, telefono, rol, existencia } = usuario;
 
 
-    // modificar el estado del usuario en firebase
-    /*updateBookList: (id, data) => {
-            let ref = firebaseDb.ref('NewBooks');
-            return ref
-            .child(id)
-            .update(data)
-            .then(() => ref.once('value'))
-            .then(snapshot => snapshot.val())
-            .catch(error => ({
-                errorCode: error.code,
-                errorMessage: error.message
-            }));
-        }*/
-
 
     const actualizarDisponibilidad = () => {
         const existencia = (existenciaRef.current.value === "true");
@@ -60,18 +46,14 @@ const Usuarios = ({usuario}) => {
                         <p className="text-gray-600 mb-4">Rol: {''}
                             <span className="text-gray-700 font-bold"> {rol}</span> 
                         </p>
-                        <input
-                            type="submit"
-                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
-                            value="Editar Usuario"
-                        />
-                        <input
-                        type="submit"
-                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
-                        value="Eliminar Usuario"
-                        />
                     </div>
-                    
+                    <input
+                        type="submit"
+                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-20  text-white font-bold"
+                        value="Eliminar Usuario"
+                        onClick={ () => actualizarDisponibilidad() }
+
+                    />
                 </div>
             </div>
         </div>

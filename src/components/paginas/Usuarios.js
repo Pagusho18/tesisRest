@@ -14,7 +14,7 @@ const Usuarios = () => {
     // consultar la base de datos al cargar
     useEffect(() => {
         const obtenerUsuarios =  () => {
-           firebase.db.collection('usuarios').onSnapshot(manejarSnapshot);
+           firebase.db.collection('usuarios').where('existencia', "==", true).onSnapshot(manejarSnapshot);
         }
         obtenerUsuarios();
     }, []);

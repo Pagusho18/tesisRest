@@ -1,19 +1,19 @@
 import React, { useContext, useRef ,useState} from 'react';
 import { FirebaseContext } from '../../firebase';
 
-const Producto = ({producto}) => {
+const Aforo = ({aforo}) => {
     // Existencia ref para acceder al valor directamente
-    const existenciaRef = useRef(producto.disponibilidad);
+    const existenciaRef = useRef(aforo.disponibilidad);
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
     const [nuevaCantidad, setCantidad] = useState(0);
-    const { id,  nombre, cantidad,cantidadMinima, disparador,disponibilidad } = producto;
+    const { id,  cantidad } = aforo;
 
     // modificar el estado del producto en firebase
     const actualizarDisponibilidad = () => {
         const disponibilidad = false
         try {
-            firebase.db.collection('productos')
+            firebase.db.collection('aforos')
                 .doc(id)
                 .update({
                     disponibilidad
@@ -25,12 +25,13 @@ const Producto = ({producto}) => {
 
     const v1=parseInt(cantidad);
     const v2=parseInt(nuevaCantidad);
-    const nuevoTotal=v1+v2;
+    const nuevoTotal=v1-v2;
+    console.log(nuevoTotal);
 
     const actualizarCantidad = () => {
 
         try {
-            firebase.db.collection('productos')
+            firebase.db.collection('aforos')
                 .doc(id)
                 .update({
                     cantidad:nuevoTotal
@@ -39,47 +40,15 @@ const Producto = ({producto}) => {
             console.log(error);
         }
     }
-
-    if(cantidad <= cantidadMinima)
-    {
-        try {
-            firebase.db.collection('productos')
-                .doc(id)
-                .update({
-                    disparador:true
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    else{
-        try {
-            firebase.db.collection('productos')
-                .doc(id)
-                .update({
-                    disparador:false
-                });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     return ( 
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
                     <div className="lg:w-7/12 xl:w-9/12 pl-5">
-                        <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre} </p>
-                        <p className="text-gray-600 mb-4">Actual Cantidad: {''}
+                        <p className="text-gray-600 mb-4">Actual Aforo: {''}
                             <span className="text-gray-700 font-bold"> {cantidad}</span> 
                         </p>
-
-                        <p className="text-gray-600 mb-4"> Cantidad Minima : {''}
-                            <span className="text-gray-700 font-bold"> {cantidadMinima}</span> 
-                        </p>
-
-
-                        <p className="text-gray-600 mb-4">Nueva Cantidad: {''}
+                        <p className="text-gray-600 mb-4">Nuevo Aforo: {''}
                         <input
                         type="number"
                         className="text-gray-700 font-bold shadow appearance-none border"
@@ -91,18 +60,11 @@ const Producto = ({producto}) => {
                         <input
                             type="submit"
                             className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
-                            value="Agregar Nueva Cantidad"
+                            value="Agregar Nuevo Aforo"
                             onClick={ () => actualizarCantidad()}
                             
                         />
                     </div>
-                    <input
-                        type="submit"
-                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-20  text-white font-bold"
-                        value="Eliminar Porcion"
-                        onClick={ () => actualizarDisponibilidad() }
-
-                    />
                 </div>
 
             </div>
@@ -110,4 +72,4 @@ const Producto = ({producto}) => {
      );
 }
  
-export default Producto;
+export default Aforo;

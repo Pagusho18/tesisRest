@@ -19,10 +19,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-firebase-file-uploader": "^2.4.3",
+    "react-paragraph": "^1.0.0",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "3.4.3",
+    "reactjs-popup": "^2.0.4",
     "redux-firestore": "^0.13.0",
+    "rsuite": "^4.8.6",
     "sequelize": "^6.3.5",
     "yup": "^0.29.3"
   },

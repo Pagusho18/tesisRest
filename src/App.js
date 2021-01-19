@@ -13,7 +13,8 @@ import NuevoProducto from './components/paginas/NuevoProducto';
 import Productos from './components/paginas/Productos';
 import Usuarios from './components/paginas/Usuarios';
 import Alertas from './components/paginas/Alertas';
-import NuevaAlerta from './components/paginas/NuevaAlerta';
+import Reservas from './components/paginas/Reservas';
+import Aforos from './components/paginas/Aforos';
 import Sidebar from './components/ui/Sidebar';
 import Reset from './components/ui/Reset';
 
@@ -138,16 +139,16 @@ const App = () => {
               <Sidebar />
               <div className="md:w-2/5 xl:w-4/5 p-6">
                 <Routes>
+                    <Route path="/" element={<Ordenes />  } />
                     <Route path="/Platos" element={<Platos />  } />
                     <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
                     <Route path="/usuarios" element={<Usuarios />  } />
                     <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
                     <Route path="/nuevo-producto" element={<NuevoProducto />  } />
                     <Route path="/productos" element={<Productos />  } />
-                    <Route path="/alertas" element={<Alertas />  } />       
-                    <Route path="/nueva-alerta" element={<NuevaAlerta />  } />     
-                    <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />  
-                    <Route path="/" element={<Ordenes />  } />                          
+                    <Route path="/alertas" element={<Alertas />  } />   
+                    <Route path="/reservas" element={<Reservas />  } /> 
+                    <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />   
                 </Routes>
               </div>
                 <Hero handleLogout={handleLogout}/>
