@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import FileUploader from 'react-firebase-file-uploader';
 import { Checkbox, CheckboxGroup,CheckPicker  } from 'rsuite';
 
-
  const NuevoPlatillo  = () => {
 
     // state para las imagenes
