@@ -24,9 +24,7 @@ const Orden = ({ orden }) => {
             console.log(error);
         }
     }
-
     // Completa el estado de una orden
-
     const completarOrden = id => {
         try {
             firebase.db.collection('ordenes')
@@ -39,7 +37,6 @@ const Orden = ({ orden }) => {
         }
         
     }
-
     const despacharOrden = id =>
     {
 
@@ -53,54 +50,6 @@ const Orden = ({ orden }) => {
             console.log(error);
         } 
     }
-
-
-    // const nombrePlatoOrden = orden.orden.map(x => x.nombre);
-    // //console.log(nombrePlatoOrden);
-
-        //     //Function definiton with passing two arrays 
-        // function findCommonElement(array1, array2) { 
-
-        //     // Loop for array1 
-        //     for(let i = 0; i < array1.length; i++) { 
-
-        //         // Loop for array2 
-        //         for(let j = 0; j < array2.length; j++) { 
-
-        //             // Compare the element of each and 
-        //             // every element from both of the 
-        //             // arrays 
-        //             if(array1[i] === array2[j]) { 
-
-        //                 // Return if common element found 
-        //                 return true; 
-        //             } 
-        //         } 
-        //     } 
-
-        //     // Return if no common element exist 
-        //     return false;
-        // } 
-        // document.write(findCommonElement(nombrePlatoOrden, nombrePlatoProducto))
-
-    //     var result = nombrePlatoOrden.filter(function (o1) {
-    //         return nombrePlatoProducto.some(function (o2) {
-    //             return o1 === o2; // return the ones with equal id
-    //        });
-    //     });
-    //     //console.log(result);
-    //     // if(findCommonElement(nombrePlatoOrden, nombrePlatoProducto))
-    //     // {
-    //     //     try {
-    //     //         firebase.db.collection('productos')
-    //     //             .doc(id)
-    //     //             .update({
-    //     //                 cantidad:cantidad-1
-    //     //             });
-    //     //     } catch (error) {
-    //     //         console.log(error);
-    //     //     }
-    //     // }
     return ( 
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
@@ -163,12 +112,7 @@ const Orden = ({ orden }) => {
                     Marcar como completa
                     </button>
                     </div>
-                    
-                   
                 ) }
-                
-
-
             </div>
             </div>
             </div>

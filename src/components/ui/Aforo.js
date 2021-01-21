@@ -22,12 +22,10 @@ const Aforo = ({aforo}) => {
             console.log(error);
         }
     }
-
     const v1=parseInt(cantidad);
     const v2=parseInt(nuevaCantidad);
     const nuevoTotal=v1-v2;
     console.log(nuevoTotal);
-
     const actualizarCantidad = () => {
 
         try {
@@ -55,14 +53,12 @@ const Aforo = ({aforo}) => {
                         onChange={event => setCantidad(event.target.value)}
                         >
                         </input>
-
                         </p>
                         <input
                             type="submit"
                             className="bg-orange-600 hover:bg-red-700 uppercase p-2 text-white font-bold"
                             value="Agregar Nuevo Aforo"
                             onClick={ () => actualizarCantidad()}
-                            
                         />
                     </div>
                 </div>

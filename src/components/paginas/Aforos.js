@@ -31,7 +31,6 @@ const Aforos = () => {
         guadarAforo(aforos);
     }
 
-
     return ( 
         <>
             <h1 className="text-3xl font-light mb-4">Aforo</h1>

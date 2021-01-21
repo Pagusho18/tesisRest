@@ -14,7 +14,6 @@ const Reservas = () => {
         const obtenerProductoActivo =  () => {
            firebase.db.collection('reservas')
            .where('activo', "==", true)
-           .where('pendingAprobe', "==", true)
            .onSnapshot(manejarSnapshot);
         }
         obtenerProductoActivo();
