@@ -49,9 +49,7 @@ const App = () => {
   const handleLogin = () => {
     clearErrors();
     var arrCorreoBase = usuarios.map(x=>x.correo);
-      //var n = arrCorreoBase.includes(email);
-      //console.log(n);
-    if( arrCorreoBase.includes(email))
+    if(arrCorreoBase.includes(email))
     {
       fire
       .auth()
