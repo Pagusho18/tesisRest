@@ -23,8 +23,6 @@ import { useNavigate } from 'react-router-dom';
 const App = () => {
 
   const navigate = useNavigate();
-
-  const [usuarios, guadarUsuarios] = useState([]);
   const [user,setUser] = useState('');
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
@@ -46,43 +44,34 @@ const App = () => {
     setPasswordError('');
   };
 
-  useEffect(() => {
-    const obtenerUsuarios =  () => {
-       firebase.db.collection('usuarios').onSnapshot(manejarSnapshot);
-    }
-    obtenerUsuarios();
-  }, []);
-  
-  function manejarSnapshot(snapshot) {
-    const usuarios = snapshot.docs.map(doc => {
-        return {
-            id: doc.id,
-            ...doc.data()
-        }
-    });
-    // almacenar los resultados en el state
-    guadarUsuarios(usuarios);
-  }
+
 
   const handleLogin = () => {
     clearErrors();
-    fire
-    .auth()
-    .signInWithEmailAndPassword(email,password)
-    .catch(err =>{
-      switch(err.code)
-      {
-        case "auth/invalid-email":
-        case "auth/user-disabled":
-        case "auth/user-not-found":
-          setEmailError(err.message);
-          break;
-        case "auth/wrong-password":
-          setPasswordError(err.message);
-          break;
+    var arrCorreoBase = usuarios.map(x=>x.correo);
+      //var n = arrCorreoBase.includes(email);
+      //console.log(n);
+    if( arrCorreoBase.includes(email))
+    {
+      fire
+      .auth()
+      .signInWithEmailAndPassword(email,password)
+      .catch(err =>{
+        switch(err.code)
+        {
+          case "auth/invalid-email":
+          case "auth/user-disabled":
+          case "auth/user-not-found":
 
-      }
-    });
+            setEmailError(err.message);
+            break;
+          case "auth/wrong-password":
+            setPasswordError(err.message);
+            break;
+
+        }
+      });
+    }
   };
 
   const handleSignup = () => {
@@ -109,6 +98,30 @@ const App = () => {
     fire.auth().signOut();
   };
 
+
+    
+  const [usuarios, guadarUsuarios] = useState([]);
+  useEffect(() => {
+    const obtenerUsuarios =  () => {
+       firebase.db.collection('usuarios').where('rol', "==", 'Administrador').onSnapshot(manejarSnapshot);
+    }
+    obtenerUsuarios();
+  }, []);
+  
+  function manejarSnapshot(snapshot) {
+    const usuarios = snapshot.docs.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    });
+    // almacenar los resultados en el state
+    guadarUsuarios(usuarios);
+  }
+      
+
+
+
   const authListener = () =>{
     fire
     .auth()
@@ -126,6 +139,9 @@ const App = () => {
   useEffect(() =>{
     authListener();
   },[]);
+
+    
+
   return(  
     <div className="App">
       {

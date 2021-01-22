@@ -1,11 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import firebase, { FirebaseContext } from './firebase';
 
 const Login = (props) => {
 
     const navigate = useNavigate();
 
     const {email,setEmail,password,setPassword,handleLogin,handleSignup,hasAccount,sethasAccount,emailError,passwordError } = props;
+
 
     return(
         <div className="flex justify-center mt-10">
