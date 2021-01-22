@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const NuevoProducto = () => {
 
-
     // Context con las operaciones de firebase
     const { firebase } = useContext(FirebaseContext);   
     // Hook para redireccionar
