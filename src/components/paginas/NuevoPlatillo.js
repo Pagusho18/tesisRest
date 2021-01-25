@@ -240,7 +240,7 @@ import { Checkbox, CheckboxGroup,CheckPicker  } from 'rsuite';
                             inline 
                             name="checkboxList"
                             onChange={value => {
-                                guadarArrProducto({ value });
+                                guadarArrProducto( value );
                             }}
                             >
                                 {productos.map((producto) => (

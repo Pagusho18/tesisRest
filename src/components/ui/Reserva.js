@@ -9,23 +9,21 @@ const Reserva = ({reserva}) => {
     const { id,  detail,pendingAprobe, activo,diahorareserva,email, nombre,personas,phone } = reserva;
 
 
-
     // modificar el estado del alertas en firebase
-    const actualizarDisponibilidad = () => {
-        const activo = (existenciaRef.current.value === "true");
+    const AceptarReserva = () => {
+        
         try {
             firebase.db.collection('reservas')
                 .doc(id)
                 .update({
-                    activo,
-                    pendingAprobe:activo
+                    activo:true,
+                    pendingAprobe:true
                     
                 });
         } catch (error) {
             console.log(error);
         }
     }
-
 
     const CancelarDisponibilidad = () => {
         try {
@@ -39,7 +37,9 @@ const Reserva = ({reserva}) => {
             console.log(error);
         }
     }
-    
+
+
+
     
     return ( 
         <div className="w-full px-3 mb-4">
@@ -60,34 +60,34 @@ const Reserva = ({reserva}) => {
                             <span className="text-gray-700 font-bold"> {diahorareserva}</span> 
                         </p>
                         <p className="text-gray-600 mb-4">Detalle: {''}
-                            <span className="text-gray-700 font-bold"> {detail}</span> 
-                            
+                            <span className="text-gray-700 font-bold"> {detail}</span>
                         </p>
 
                         <label className="block mt-5 sm:w-2/4">
                                     <span className="text-gray-600 mb-4 " >Respuesta: </span>
-                                    <select 
-                                        className="bg-white shadow appearance-none border rounded  py-2 px-3 leading-tight focus:outline-none focus:shadow-outline  "
-                                        value={activo}
-                                        ref={existenciaRef}
-                                        onChange={ () => actualizarDisponibilidad() }
-                                    >
-                                        <option value="true">Aceptar</option>
-                                        <option value="false">No Aceptar</option>
-                                    </select>
+
                         </label>
-
-
+                        {pendingAprobe?(<input
+                            type="submit"
+                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
+                            value="Reserva Completa"
+                            onClick={ () => CancelarDisponibilidad() }
+                        /> ):
+                        (<input
+                            type="submit"
+                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
+                            value="Aceptar"
+                            onClick={ () => AceptarReserva() }
+                        />)}
+                        <input
+                            type="submit"
+                            className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
+                            value="Rechazar"
+                            onClick={ () => CancelarDisponibilidad() }
+                        />
                     </div>
                 </div>
-                <input
-                        type="submit"
-                        className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-10  text-white font-bold"
-                        value="Reserva Completa"
-                        onClick={ () => CancelarDisponibilidad() }
-                        />
             </div>
-            
         </div>
      );
 }
