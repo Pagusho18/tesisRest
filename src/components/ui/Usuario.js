@@ -9,9 +9,7 @@ const Usuarios = ({usuario}) => {
     // context de firebase para cambios en la BD
     const { firebase } = useContext(FirebaseContext)
 
-    const { id,  nombre, cedula , correo, telefono, rol, existencia } = usuario;
-
-
+    const { id,  nombre, identificacion , correo, telefono, rol, existencia } = usuario;
 
     const actualizarDisponibilidad = () => {
         const existencia = (existenciaRef.current.value === "true");
@@ -27,17 +25,16 @@ const Usuarios = ({usuario}) => {
         }
     }
 
-
     return ( 
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
                     <div className="lg:w-7/12 xl:w-9/12 pl-5">
                         <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre} </p>
-                        <p className="text-gray-600 mb-4">Cedula: {''}
-                            <span className="text-gray-700 font-bold"> {cedula}</span> 
+                        <p className="text-gray-600 mb-4">Identificación: {''}
+                            <span className="text-gray-700 font-bold"> {identificacion}</span> 
                         </p>
-                        <p className="text-gray-600 mb-4">telefono: {''}
+                        <p className="text-gray-600 mb-4">Teléfono: {''}
                             <span className="text-gray-700 font-bold"> {telefono}</span> 
                         </p>
                         <p className="text-gray-600 mb-4">Correo: {''}
@@ -52,7 +49,6 @@ const Usuarios = ({usuario}) => {
                         className="bg-orange-600 hover:bg-red-700 uppercase p-2 m-20  text-white font-bold"
                         value="Eliminar Usuario"
                         onClick={ () => actualizarDisponibilidad() }
-
                     />
                 </div>
             </div>

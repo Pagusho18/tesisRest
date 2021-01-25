@@ -31,7 +31,7 @@ const Reset = (props) => {
                             <button id="btnReset" 
                                 onClick={ async() => {
                                     console.log(firebase);
-                                    await firebase.auth.sendPasswordResetEmail(email);
+                                    await firebase.user.sendPasswordResetEmail(email);
                                     navigate('/login');
                                 } 
                                 }

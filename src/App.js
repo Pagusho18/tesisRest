@@ -49,9 +49,7 @@ const App = () => {
   const handleLogin = () => {
     clearErrors();
     var arrCorreoBase = usuarios.map(x=>x.correo);
-      //var n = arrCorreoBase.includes(email);
-      //console.log(n);
-    if( arrCorreoBase.includes(email))
+    if(arrCorreoBase.includes(email))
     {
       fire
       .auth()
@@ -155,8 +153,8 @@ const App = () => {
               <Sidebar />
               <div className="md:w-2/5 xl:w-4/5 p-6">
                 <Routes>
-                    <Route path="/" element={<Ordenes />  } />
-                    <Route path="/Platos" element={<Platos />  } />
+                    <Route path="/ordenes" element={<Ordenes />  } />
+                    <Route path="/platos" element={<Platos />  } />
                     <Route path="/nuevo-platillo" element={<NuevoPlatillo />  } />
                     <Route path="/usuarios" element={<Usuarios />  } />
                     <Route path="/nuevo-usuario" element={<NuevoUsuario />  } />
@@ -164,7 +162,7 @@ const App = () => {
                     <Route path="/productos" element={<Productos />  } />
                     <Route path="/alertas" element={<Alertas />  } />   
                     <Route path="/reservas" element={<Reservas />  } /> 
-                    <Route path="/ordenes-historico" element={<OrdenesHistorico />  } />   
+                    <Route path="/historico" element={<OrdenesHistorico />  } />   
                     <Route path="/aforos" element={<Aforos />  } />  
                 </Routes>
               </div>
@@ -173,14 +171,13 @@ const App = () => {
           </FirebaseContext.Provider>
         ) : ( 
         window.location.href === "http://localhost:3000/reset" ? ( // Si quiere resetear
-        <FirebaseContext.Provider
-          value={{
-            firebase
-          }}
-        >
-        <Route path="/reset" element={<Reset />  } />
-
-        </FirebaseContext.Provider>
+          <FirebaseContext.Provider
+            value={{
+              firebase
+            }}
+          >
+            <Route path="/reset" element={<Reset />  } />
+          </FirebaseContext.Provider>
       ) : (
         <Login
         email={email}
